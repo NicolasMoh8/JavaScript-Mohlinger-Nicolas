@@ -1,59 +1,3 @@
-//clase 1.-
-
-/* let nombre = prompt('cual es tu nombre?');
-console.log (nombre); */
-
-/* let edad = parseInt(prompt ('cual es tu edad'));
-console.log(edad);
-
-alert('holaaaaaaaaaaaa'); */
-
-
-/* let edadActual = parseInt(prompt('Ingresa tu edad'));
-
-let edadEn73 = edadActual + 73;
-
-
-
-alert('Tu edad en 73 años sera de '+ edadEn73 +' años.'); */
-
-
-
-
-//clase 2.-
-
-/* let edadUsuario = parseInt(prompt('cual es su edad'));
-
-let edadPermitida = 18;
-
-if (edadUsuario >= edadPermitida) {
-    console.log('puede comprar');
-
-} else {
-    console.log('no podes comprar');
-}
- */
-
-
-/* let flanderEntraSolo=false;
-
-if(flanderEntraSolo){
-    alert('funciona la trampa');
-}else{
-    alert('fuera flanders');
-} */
-
-
-
-
-
-
-
-
-
-
-
-//veeeeeer login
 
 let nombre = prompt('Ingrese su nombre');
 let apellido = prompt('Ingrese su apellido');
@@ -62,7 +6,6 @@ if (nombre != '' || apellido != '') {
 } else {
     alert('Faltan datos')
 }
-
 
 let savedContraseña = '3estrellas';
 
@@ -85,8 +28,6 @@ function login() {
     }
     return ingresar;
 }
-
-
 
 if (login()) {
     let precioBalanceadoPerros = 10000;
