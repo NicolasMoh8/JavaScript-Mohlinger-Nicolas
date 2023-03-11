@@ -20,7 +20,7 @@ function login() {
     }
     return ingresar;
 }
-if (login()) {
+/* if (login()) {
     let precioBalanceadoPerros = 10000;
     let precioBalanceadoGatos = 8000;
     let precioHumedo = 5000;
@@ -69,4 +69,94 @@ if (login()) {
 } else {
     alert('Vuelva a intentar ingresar.')
 }
+alert('Gracias por visitarnos.') */
+
+class Producto {
+    constructor(nombre, precio, kilos, cantidad) {
+        this.nombre = nombre.toUpperCase();
+        this.precio = parseFloat(precio);
+        this.kilos = parseFloat(kilos);
+        this.cantidad = parseInt(cantidad);
+        this.vendido = false;
+    }
+    sumarIVAyTotal() {
+        this.precio = (this.precio * 1.21) * this.cantidad;
+    }
+    cambiarPrecio(precio) {
+        this.precio = precio;
+    }
+    vender() {
+        this.vendido = true;
+    }
+}
+
+
+
+if (login()) {
+
+    const productos = [
+        new Producto('Agility Adulto', 24200, 20, 2),
+        new Producto('Agility Cats', 9680, 10, 1),
+        new Producto('Agility', 3630, 0.34, 6),
+        new Producto('Agility', 4356, 0.090, 8)
+    ]
+    console.log(productos);
+
+    let continuar = true;
+
+    while (continuar) {
+
+        let ingreso = prompt('Ingresa los datos del producto que desea comprar: nombre, precio sin IVA, kilos, cantidad, separados por una barra diagonal ("/"). Ingrese NO para salir.');
+
+        if (ingreso.toUpperCase() == 'NO') {
+            continuar = false;
+            break;
+        }
+        let productoNuevo = ingreso.split('/');
+        const productoA = new Producto(productoNuevo[0], productoNuevo[1], productoNuevo[2], productoNuevo[3]);
+        console.log(productoA);
+        productos.push(productoA);
+        productoA.sumarIVAyTotal(productos);
+        console.log(productos);
+        
+    }
+    let orden = prompt('Seleccione como desea ordenarlos: \n1 - Por nombre (A-Z). \n2 - Por nombre (Z-A). \n3 - Mayor a menor precio. \n4 - Menor a mayor precio.');
+    function ordenar(orden, array) {
+        let arrayOrdenado = array.slice(0);
+        switch (orden) {
+            case '1':
+                let nombreAscendente = arrayOrdenado.sort((a, b) => a.nombre.localeCompare(b.nombre))
+                return nombreAscendente;
+            case '2':
+                let nombreDescendente = arrayOrdenado.sort((a, b) => b.nombre.localeCompare(a.nombre))
+                return nombreDescendente;
+            case '3':
+                return arrayOrdenado.sort((a, b) => b.precio - a.precio)
+            case '4':
+                return arrayOrdenado.sort((a, b) => a.precio - b.precio)
+            default:
+                alert('No es correcto');
+                break;
+        }
+    }
+    function crearResultado(array) {
+        let info = '';
+        array.forEach(elemento => {
+            info += 'El precio del producto ' + elemento.nombre + ' es $ ' + elemento.precio + ', cada unidad pesa ' + elemento.kilos + ' kilos y son ' + elemento.cantidad + ' unidades.\n\n'
+
+        })
+        return info;
+    }
+    alert(crearResultado(ordenar(orden, productos)))
+
+
+
+} else {
+    alert('Vuelva a intentar ingresar.')
+}
 alert('Gracias por visitarnos.')
+
+
+
+
+
