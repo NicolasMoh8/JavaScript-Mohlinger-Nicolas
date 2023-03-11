@@ -96,9 +96,13 @@ if (login()) {
 
     const productos = [
         new Producto('Agility Adulto', 24200, 20, 2),
-        new Producto('Agility Cats', 9680, 10, 1),
-        new Producto('Agility', 3630, 0.34, 6),
-        new Producto('Agility', 4356, 0.090, 8)
+        new Producto('Agility Cats Adulto', 9680, 10, 1),
+        new Producto('Agility Cats Urinary', 10285, 10, 1),
+        new Producto('Agility Húmedo', 3630, 0.34, 6),
+        new Producto('Agility Húmedo', 4356, 0.090, 8),
+        new Producto('Maxxium Adulto', 14520, 20, 1),
+        new Producto('Maxxium Cachorro', 45375, 15, 3),
+        new Producto('Sieger Criadores', 18500, 22, 1)
     ]
     console.log(productos);
 
@@ -118,7 +122,7 @@ if (login()) {
         productos.push(productoA);
         productoA.sumarIVAyTotal(productos);
         console.log(productos);
-        
+
     }
     let orden = prompt('Seleccione como desea ordenarlos: \n1 - Por nombre (A-Z). \n2 - Por nombre (Z-A). \n3 - Mayor a menor precio. \n4 - Menor a mayor precio.');
     function ordenar(orden, array) {
@@ -149,7 +153,15 @@ if (login()) {
     }
     alert(crearResultado(ordenar(orden, productos)))
 
+    let nombreBuscado = prompt('Escribí el nombre del producto.');
+    const filtrado = productos.filter((producto) => producto.nombre.toLowerCase().includes(nombreBuscado.toLowerCase()))
 
+    if (filtrado.length == 0) {
+        alert('No se han encontrado coincidencias.');
+    } else {
+        const mostrar = filtrado.map((producto) => producto.nombre);
+        alert('Los nombres de productos que coinciden parcial o totalmente con su búsqueda, son:\n- ' + mostrar.join('\n- '));
+    }
 
 } else {
     alert('Vuelva a intentar ingresar.')
