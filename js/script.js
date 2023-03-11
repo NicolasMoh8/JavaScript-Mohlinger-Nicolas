@@ -110,7 +110,7 @@ if (login()) {
 
     while (continuar) {
 
-        let ingreso = prompt('Ingresa los datos del producto que desea comprar: nombre, precio sin IVA, kilos, cantidad, separados por una barra diagonal ("/"). Ingrese NO para salir.');
+        let ingreso = prompt('Ingresa los datos del producto que desea comprar: nombre del producto, precio sin IVA, kilos, cantidad, separados por una barra diagonal ("/"). Ingrese NO para salir.');
 
         if (ingreso.toUpperCase() == 'NO') {
             continuar = false;
