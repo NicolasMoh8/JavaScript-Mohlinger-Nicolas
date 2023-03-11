@@ -146,21 +146,21 @@ if (login()) {
     function crearResultado(array) {
         let info = '';
         array.forEach(elemento => {
-            info += 'El precio del producto ' + elemento.nombre + ' es $ ' + elemento.precio + ', cada unidad pesa ' + elemento.kilos + ' kilos y son ' + elemento.cantidad + ' unidades.\n\n'
+            info += 'El precio del producto ' + elemento.nombre + ' es $ ' + elemento.precio + ', cada unidad pesa ' + elemento.kilos + ' kilos y es/son ' + elemento.cantidad + ' unidad/es.\n\n'
 
         })
         return info;
     }
     alert(crearResultado(ordenar(orden, productos)))
 
-    let nombreBuscado = prompt('Escribí el nombre del producto.');
+    let nombreBuscado = prompt('Escribí el nombre del producto que busca.');
     const filtrado = productos.filter((producto) => producto.nombre.toLowerCase().includes(nombreBuscado.toLowerCase()))
 
     if (filtrado.length == 0) {
         alert('No se han encontrado coincidencias.');
     } else {
         const mostrar = filtrado.map((producto) => producto.nombre);
-        alert('Los nombres de productos que coinciden parcial o totalmente con su búsqueda, son:\n- ' + mostrar.join('\n- '));
+        alert('Los nombres de los productos que coinciden parcial o totalmente con su búsqueda, son:\n- ' + mostrar.join('\n- '));
     }
 
 } else {
