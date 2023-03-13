@@ -95,14 +95,14 @@ class Producto {
 if (login()) {
 
     const productos = [
-        new Producto('Agility Adulto', 24200, 20, 2),
-        new Producto('Agility Cats Adulto', 9680, 10, 1),
-        new Producto('Agility Cats Urinary', 10285, 10, 1),
-        new Producto('Agility Húmedo', 3630, 0.34, 6),
-        new Producto('Agility Húmedo', 4356, 0.090, 8),
-        new Producto('Maxxium Adulto', 14520, 20, 1),
-        new Producto('Maxxium Cachorro', 45375, 15, 3),
-        new Producto('Sieger Criadores', 18500, 22, 1)
+        new Producto('Agility Adulto por 20 kg.', 24200, 20, 2),
+        new Producto('Agility Cats Adulto por 10 kg.', 9680, 10, 1),
+        new Producto('Agility Cats Urinary por 10 kg.', 10285, 10, 1),
+        new Producto('Agility Húmedo por 340 gr.', 3630, 0.34, 6),
+        new Producto('Agility Húmedo por 90 gr.', 4356, 0.090, 8),
+        new Producto('Maxxium Adulto por 20 kg.', 14520, 20, 1),
+        new Producto('Maxxium Cachorro por 15 kg.', 45375, 15, 3),
+        new Producto('Sieger Criadores por 22 kg.', 18500, 22, 1)
     ]
     console.log(productos);
 
@@ -124,7 +124,7 @@ if (login()) {
         console.log(productos);
 
     }
-    let orden = prompt('Seleccione como desea ordenarlos: \n1 - Por nombre (A-Z). \n2 - Por nombre (Z-A). \n3 - Mayor a menor precio. \n4 - Menor a mayor precio.');
+    let orden = prompt('Seleccione como desea ordenarlos: \n1 - Por nombre (A-Z). \n2 - Por nombre (Z-A). \n3 - Mayor a menor precio. \n4 - Menor a mayor precio. \n5 - Mayor a menor kilos. \n6 - Menor a mayor kilos.');
     function ordenar(orden, array) {
         let arrayOrdenado = array.slice(0);
         switch (orden) {
@@ -138,6 +138,10 @@ if (login()) {
                 return arrayOrdenado.sort((a, b) => b.precio - a.precio)
             case '4':
                 return arrayOrdenado.sort((a, b) => a.precio - b.precio)
+            case '5':
+                return arrayOrdenado.sort((a, b) => b.kilos - a.kilos)
+            case '6':
+                return arrayOrdenado.sort((a, b) => a.kilos - b.kilos)
             default:
                 alert('No es correcto');
                 break;
@@ -160,7 +164,7 @@ if (login()) {
         alert('No se han encontrado coincidencias.');
     } else {
         const mostrar = filtrado.map((producto) => producto.nombre);
-        alert('Los nombres de los productos que coinciden parcial o totalmente con su búsqueda, son:\n- ' + mostrar.join('\n- '));
+        alert('Los nombres de los productos que coinciden parcial o totalmente con su búsqueda, son:\n\n- ' + mostrar.join('\n- '));
     }
 
 } else {
