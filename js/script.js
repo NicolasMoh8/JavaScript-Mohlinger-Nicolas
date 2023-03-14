@@ -58,7 +58,7 @@ if (login()) {
 
     while (continuar) {
 
-        let ingreso = prompt('Ingresa los datos del producto que desea comprar: nombre del producto, precio sin IVA, kilos, cantidad, separados por una barra diagonal ("/"). Ingrese NO para salir.');
+        let ingreso = prompt('Ingrese los datos del producto que desea comprar: nombre del producto, precio sin IVA, kilos, cantidad, separados por una barra diagonal ("/"). Ingrese NO para salir.');
 
         if (ingreso.toUpperCase() == 'NO') {
             continuar = false;
@@ -70,7 +70,6 @@ if (login()) {
         productos.push(productoA);
         productoA.sumarIVAyTotal(productos);
         console.log(productos);
-
     }
     let orden = prompt('Seleccione como desea ordenarlos: \n1 - Por nombre (A-Z). \n2 - Por nombre (Z-A). \n3 - Mayor a menor precio. \n4 - Menor a mayor precio. \n5 - Mayor a menor kilos. \n6 - Menor a mayor kilos.');
     function ordenar(orden, array) {
