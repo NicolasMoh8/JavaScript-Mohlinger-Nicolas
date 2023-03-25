@@ -1,16 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi proyecto JS</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/estilo.css">
     <script defer src="./js/script.js"></script>
 </head>
-<body>
 
-    
-    
+<body class="bg-success">
+    <header class="container-fluid bg-success">
+        <nav class="navbar navbar-light loginBar">
+            <div class="container-fluid row">
+                <h1 class="text-white py-3 col-11 d-flex justify-content-center">Plataforma para carga de productos de
+                    alimento balanceado para mascotas.
+                </h1>
+                <form class="d-flex col-1 text">
+                    <button class="btn text-white btn-outline-light toggles" type="button" data-bs-toggle="modal"
+                        data-bs-target="#modalLogin">Ingresar</button>
+                    <button class="btn text-white btn-outline-secondary d-none toggles" type="button">Salir</button>
+                    <p id="nombreUsuario" class="d-none toggles"></p>
+                </form>
+            </div>
+        </nav>
+    </header>
+
+    <main clas="container-fluid">
+        <!-- <form class="container">
+            <div>
+                <div class="col-4 my-2">
+                    <input type="text" class="form-control" placeholder="Ingrese su nombre" aria-label="First name">
+                </div>
+                <div class="col-4 my-2">
+                    <input type="text" class="form-control" placeholder="Ingrese su apellido" aria-label="Last name">
+                </div>
+            </div>
+            <div class="form-floating my-2 col-4">
+                <input type="password" class="form-control" id="password" placeholder="Contraseña">
+                <label for="password">Contraseña</label>
+            </div>
+            <button class="btn btn-outline-dark mb-3" type="submit"><strong>Ingresar</strong> </button>
+
+        </form> -->
+        <div class="container-fluid bg-success my-2">
+            <div>
+                <div class="row my-4">
+                    <div class="col-7">
+                        <select class="form-select" id="criterioBusqueda">
+                            <option disabled selected>Criterio de busqueda</option>
+                            <option value="nombre">Nombre del producto</option>
+                        </select>
+                    </div>
+                    <div class="col-5">
+                        <input type="text" class="form-control" id="inputBuscar" placeholder="Escriba aquí">
+                    </div>
+                </div>
+            </div>
+            <div class="row bg-success-subtle">
+                <div>
+                    <form class="m-4 row">
+                        <div class="col">
+                            <label for="inputTitle"
+                                class="form-label d-flex justify-content-center"><strong>Código</strong></label>
+                            <input type="text" class="form-control" id="inputCodigo">
+                        </div>
+                        <div class="col-3">
+                            <label for="inputNombre" class="form-label d-flex justify-content-center"><strong>Nombre del
+                                    producto</strong> </label>
+                            <input type="text" class="form-control" id="inputNombre">
+                        </div>
+                        <div class="col">
+                            <label for="inputPrecio"
+                                class="form-label d-flex justify-content-center"><strong>Precio</strong></label>
+                            <input type="text" class="form-control" id="inputPrecio">
+                        </div>
+                        <div class="col">
+                            <label for="seleccioneKilos"
+                                class="form-label d-flex justify-content-center"><strong>Kilos</strong></label>
+                            <select class="form-select" id="seleccioneKilos">
+                                <option disabled selected>Seleccione los kilos</option>
+                                <option value="0,090 Kg">0,090 Kg</option>
+                                <option value="0,340 Kg">0,340 Kg</option>
+                                <option value="3 Kilos">3 Kilos</option>
+                                <option value="10 Kilos">10 Kilos</option>
+                                <option value="15 Kilos">15 Kilos</option>
+                                <option value="20 Kilos">20 Kilos</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label for="inputTitle"
+                                class="form-label d-flex justify-content-center"><strong>Cantidad</strong></label>
+                            <input type="text" class="form-control" id="inputCantidad">
+                        </div>
+                        <div class="col">
+                            <label for="inputTitle" class="form-label d-flex justify-content-center"
+                                id="inputPrecioSinIva"><strong>Precio sin Iva</strong></label>
+                        </div>
+                        <div class="col">
+                            <label for="inputTitle" class="form-label d-flex justify-content-center"
+                                id="inputPrecioConIva"><strong>Precio con Iva</strong></label>
+                        </div>
+                    </form>
+                </div>
+                <div class="row m-auto bg-secondary-subtle">
+                    <div id="lineaCreada">
+                    </div>
+                </div>
+                <div>
+                    <form class="m-4 row">
+                        <button type="submit" class="btn btn-outline-dark my-2"
+                            id="btnAgregar"><strong>Agregar</strong></button>
+                        <!-- <button type="submit" class="btn btn-outline-dark my-2"
+                            id="btnFinalizar"><strong>Finalizar</strong></button> -->
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </main>
+    <footer class="bg-success container">
+        <div class="row">
+            <p class="d-flex justify-content-center align-items-center col text-dark"><strong>Todos los derechos
+                    reservados.</strong> </p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>

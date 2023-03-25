@@ -1,4 +1,4 @@
-let nombre = prompt('Ingrese su nombre');
+/* let nombre = prompt('Ingrese su nombre');
 let apellido = prompt('Ingrese su apellido');
 if (nombre != '' && apellido != '') {
     alert('Bienvenido/a ' + nombre + ' ' + apellido)
@@ -19,9 +19,12 @@ function login() {
         }
     }
     return ingresar;
-}      
+}    */
 
-class Producto {
+
+
+
+/* class Producto {
     constructor(nombre, precio, kilos, cantidad) {
         this.nombre = nombre.toUpperCase();
         this.precio = parseFloat(precio);
@@ -118,7 +121,114 @@ if (login()) {
     alert('Vuelva a intentar ingresar.')
 }
 alert('Gracias por visitarnos.')
+ */
 
+//Variable donde voy a guardar los productos que se carguen
+let catalogo;
+
+//Traigo los elementos del DOM
+const inputNombre = document.getElementById('inputNombre'),
+    inputPrecio = document.getElementById('inputPrecio'),
+    inputCantidad = document.getElementById('inputCantidad'),
+    inputCodigo = document.getElementById('inputCodigo'),
+    seleccioneKilos = document.getElementById('seleccioneKilos'),
+    inputPrecioSinIva = document.getElementById('inputprecioSinIva'),
+    inputPrecioConIva = document.getElementById('inputprecioConIva'),
+    btnAgregar = document.getElementById('btnAgregar'),
+    btnFinalizar = document.getElementById('btnFinalizar'),
+    lineaCreada = document.getElementById('lineaCreada'),
+    criterioBusqueda = document.getElementById('criterioBusqueda'),
+    inputBuscar = document.getElementById('inputBuscar')
+
+//Se crea una clase constructora de los productos
+class Productos {
+    //Metodo constructor
+    constructor(codigo, nombre, precio, kilos, cantidad) {
+        this.nombre = nombre.toUpperCase();
+        this.precio = parseFloat(precio);
+        this.kilos = parseFloat(kilos);
+        this.cantidad = parseInt(cantidad);
+        this.codigo = codigo;
+        this.precioSinIva = this.precio * this.cantidad;
+        this.precioConIva = this.precioSinIva * 1.21;
+    }
+}
+
+//Funcion para cargar los productos que se crean
+function cargarProducto(catalogo) {    
+    const productos = new Productos(inputNombre.value, inputPrecio.value, seleccioneKilos.value, inputCantidad.value, inputCodigo.value, inputPrecioSinIva, inputPrecioConIva);
+    catalogo.push(productos);
+    
+}
+
+
+//Funcion para guardar en storage
+function guardarStorage(catalogo) {
+    localStorage.setItem('catalogoProducto', JSON.stringify(catalogo))
+}
+
+//funcion que crea las lineas de productos
+function crearLineaProducto(arrayProducto, html) {
+    html.innerHTML = '';
+
+    for (const elemento of arrayProducto) {
+
+        let divRowLineaProducto = document.createElement('div');
+
+        divRowLineaProducto.className = 'row';
+
+        divRowLineaProducto.innerHTML = `
+        <div class="row">
+            <div class="col d-flex justify-content-center">${elemento.codigo}</div>
+            <div class="col-3 d-flex justify-content-center">${elemento.nombre}</div>
+            <div class="col d-flex justify-content-center">${elemento.precio}</div>
+            <div class="col d-flex justify-content-center">"${elemento.kilos}"</div>
+            <div class="col d-flex justify-content-center">${elemento.cantidad}</div>
+            <div class="col d-flex justify-content-center">${elemento.precioSinIva}</div>            
+            <div class="col d-flex justify-content-center">${elemento.precioConIva}</div>
+        </div>`;
+
+        html.append(divRowLineaProducto);
+    }
+
+}
+//Evento del boton agragar
+btnAgregar.onclick = (evento) => {
+    evento.preventDefault();
+    cargarProducto(catalogo);
+    guardarStorage(catalogo);
+    crearLineaProducto(catalogo, lineaCreada);
+}
+//Evento para que al recargar la pagina se recupere lo guardado en el Storage Local
+window.onload = () => {
+    catalogo = JSON.parse(localStorage.getItem('catalogoProducto'))
+    if (catalogo != null) {
+        crearLineaProducto(catalogo, lineaCreada);
+    } else {
+        catalogo = [];
+    }
+
+}
+//Funcion para realizar busqueda
+function buscar(array, criterio, input) {
+    return array.filter((item) => item[criterio].includes(input))
+}
+
+//Evento para mostrar la busqueda
+inputBuscar.addEventListener('input', () => {
+    criterio = criterioBusqueda.value;
+    if (criterio == 'Criterio de busqueda') {
+        criterioBusqueda.style.border = 'red solid 2px';
+        inputBuscar.value = ''
+    } else {
+        criterioBusqueda.style.border = '';
+        let cadena = (inputBuscar.value).toUpperCase();
+        crearLineaProducto(buscar(catalogo, criterio, cadena), lineaCreada);
+        inputBuscar.onblur = () => {
+            inputBuscar.value = '';
+        }
+    }
+})
 
 
 
