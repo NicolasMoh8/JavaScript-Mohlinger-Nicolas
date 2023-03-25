@@ -156,7 +156,7 @@ class Productos {
 
 //Funcion para cargar los productos que se crean
 function cargarProducto(catalogo) {    
-    const productos = new Productos(inputNombre.value, inputPrecio.value, seleccioneKilos.value, inputCantidad.value, inputCodigo.value, inputPrecioSinIva, inputPrecioConIva);
+    const productos = new Productos(inputCodigo.value, inputNombre.value, inputPrecio.value, seleccioneKilos.value, inputCantidad.value,  inputPrecioSinIva, inputPrecioConIva);
     catalogo.push(productos);
     
 }
