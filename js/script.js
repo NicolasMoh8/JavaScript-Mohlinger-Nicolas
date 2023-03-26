@@ -124,8 +124,7 @@ alert('Gracias por visitarnos.')
  */
 
 //Variable donde voy a guardar los productos que se carguen
-let catalogo;
-
+let catalogo = [];
 //Traigo los elementos del DOM
 const inputNombre = document.getElementById('inputNombre'),
     inputPrecio = document.getElementById('inputPrecio'),
@@ -139,7 +138,6 @@ const inputNombre = document.getElementById('inputNombre'),
     lineaCreada = document.getElementById('lineaCreada'),
     criterioBusqueda = document.getElementById('criterioBusqueda'),
     inputBuscar = document.getElementById('inputBuscar')
-
 //Se crea una clase constructora de los productos
 class Productos {
     //Metodo constructor
@@ -153,30 +151,41 @@ class Productos {
         this.precioConIva = this.precioSinIva * 1.21;
     }
 }
-
 //Funcion para cargar los productos que se crean
-function cargarProducto(catalogo) {    
-    const productos = new Productos(inputCodigo.value, inputNombre.value, inputPrecio.value, seleccioneKilos.value, inputCantidad.value,  inputPrecioSinIva, inputPrecioConIva);
+function cargarProducto(catalogo) {
+    const productos = new Productos(inputCodigo.value, inputNombre.value, inputPrecio.value, seleccioneKilos.value, inputCantidad.value, inputPrecioSinIva, inputPrecioConIva);
     catalogo.push(productos);
-    
+
+    if (inputCodigo.value=='') {
+        console.log('error')
+    }
+    if (inputNombre.value=='') {
+        console.log('error')
+    }
+    if (inputPrecio.value==0) {
+        console.log('error')
+    }
+    if (inputCantidad.value==0) {
+        console.log('error')
+    }
+    if (inputPrecioSinIva==0) {
+        console.log('error')
+    }
+    if (inputPrecioConIva==0) {
+        console.log('error')
+    }
 }
-
-
 //Funcion para guardar en storage
 function guardarStorage(catalogo) {
     localStorage.setItem('catalogoProducto', JSON.stringify(catalogo))
 }
-
 //funcion que crea las lineas de productos
 function crearLineaProducto(arrayProducto, html) {
     html.innerHTML = '';
 
     for (const elemento of arrayProducto) {
-
         let divRowLineaProducto = document.createElement('div');
-
         divRowLineaProducto.className = 'row';
-
         divRowLineaProducto.innerHTML = `
         <div class="row">
             <div class="col d-flex justify-content-center">${elemento.codigo}</div>
@@ -189,8 +198,7 @@ function crearLineaProducto(arrayProducto, html) {
         </div>`;
 
         html.append(divRowLineaProducto);
-    }
-
+    }    
 }
 //Evento del boton agragar
 btnAgregar.onclick = (evento) => {
@@ -202,18 +210,13 @@ btnAgregar.onclick = (evento) => {
 //Evento para que al recargar la pagina se recupere lo guardado en el Storage Local
 window.onload = () => {
     catalogo = JSON.parse(localStorage.getItem('catalogoProducto'))
-    if (catalogo != null) {
-        crearLineaProducto(catalogo, lineaCreada);
-    } else {
-        catalogo = [];
-    }
-
+    //operador ternario
+    catalogo != null ? crearLineaProducto(catalogo, lineaCreada) : catalogo = []
 }
 //Funcion para realizar busqueda
 function buscar(array, criterio, input) {
     return array.filter((item) => item[criterio].includes(input))
 }
-
 //Evento para mostrar la busqueda
 inputBuscar.addEventListener('input', () => {
     criterio = criterioBusqueda.value;
@@ -224,9 +227,6 @@ inputBuscar.addEventListener('input', () => {
         criterioBusqueda.style.border = '';
         let cadena = (inputBuscar.value).toUpperCase();
         crearLineaProducto(buscar(catalogo, criterio, cadena), lineaCreada);
-        inputBuscar.onblur = () => {
-            inputBuscar.value = '';
-        }
     }
 })
 
