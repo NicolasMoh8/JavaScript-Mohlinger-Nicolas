@@ -156,25 +156,36 @@ function cargarProducto(catalogo) {
     const productos = new Productos(inputCodigo.value, inputNombre.value, inputPrecio.value, seleccioneKilos.value, inputCantidad.value, inputPrecioSinIva, inputPrecioConIva);
     catalogo.push(productos);
 
-    if (inputCodigo.value=='') {
-        console.log('error')
-    }
-    if (inputNombre.value=='') {
-        console.log('error')
-    }
-    if (inputPrecio.value==0) {
-        console.log('error')
-    }
-    if (inputCantidad.value==0) {
-        console.log('error')
-    }
-    if (inputPrecioSinIva==0) {
-        console.log('error')
-    }
-    if (inputPrecioConIva==0) {
-        console.log('error')
-    }
 }
+
+const validar=()=>{
+    if (inputCodigo.value == '') {
+        console.log('error')
+        return false;
+    }
+    if (inputNombre.value == '') {
+        console.log('error')
+        return false;
+    }
+    if (inputPrecio.value == 0) {
+        console.log('error')
+        return false;
+    }
+    if (inputCantidad.value == 0) {
+        console.log('error')
+        return false;
+    }
+    if (inputPrecioSinIva == 0) {
+        console.log('error')
+        return false;
+    }
+    if (inputPrecioConIva == 0) {
+        console.log('error')
+        return false;
+    }
+    return true;
+} 
+
 //Funcion para guardar en storage
 function guardarStorage(catalogo) {
     localStorage.setItem('catalogoProducto', JSON.stringify(catalogo))
@@ -198,14 +209,21 @@ function crearLineaProducto(arrayProducto, html) {
         </div>`;
 
         html.append(divRowLineaProducto);
-    }    
+    }
 }
 //Evento del boton agragar
 btnAgregar.onclick = (evento) => {
     evento.preventDefault();
-    cargarProducto(catalogo);
-    guardarStorage(catalogo);
-    crearLineaProducto(catalogo, lineaCreada);
+
+    if (validar() == true) {
+        cargarProducto(catalogo);
+        guardarStorage(catalogo);
+        crearLineaProducto(catalogo, lineaCreada);
+
+    }else{
+        btnAgregar.style.background = 'red';
+    }
+
 }
 //Evento para que al recargar la pagina se recupere lo guardado en el Storage Local
 window.onload = () => {
