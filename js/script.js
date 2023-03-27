@@ -157,7 +157,7 @@ function cargarProducto(catalogo) {
     catalogo.push(productos);
 
 }
-
+//Condicion para verificar que no queden input vacios
 const validar=()=>{
     if (inputCodigo.value == '') {
         console.log('error')
