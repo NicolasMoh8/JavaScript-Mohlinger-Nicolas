@@ -9,6 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/estilo.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script defer src="./js/script.js"></script>
 </head>
 
@@ -16,17 +17,20 @@
     <header class="container-fluid bg-success">
         <nav class="navbar navbar-light loginBar">
             <div class="container-fluid row">
-                <h1 class="text-white py-3 col-11 d-flex justify-content-center">Plataforma para la carga de productos de alimento balanceado para mascotas.
+                <h1 class="text-white py-3 col-9 d-flex justify-content-center">Plataforma para la carga de productos
+                    de alimento balanceado para mascotas.
                 </h1>
-                <form class="d-flex col-1 text">
-                    <button class="btn text-black btn-outline-light" type="button">Ingresar</button>             
+                <form class="d-flex col-3 text">
+                    <input id="inputMail" class="form-control" type="email" placeholder="Ingresa tu correo" required>
+                    <button id="btnIngresar" class="btn text-black btn-outline-light toggles"
+                        type="button">Ingresar</button>
                 </form>
             </div>
         </nav>
     </header>
 
-    <main clas="container-fluid">       
-        <div class="container-fluid bg-success my-2">
+    <main clas="container-fluid">
+        <div class="container-fluid bg-success my-2 d-none toggles">
             <div>
                 <div class="row my-4">
                     <div class="col-7">
@@ -43,59 +47,79 @@
             <div class="row bg-success-subtle">
                 <div>
                     <form class="m-4 row">
+                        <div class="col"></div>
                         <div class="col">
-                            <label for="inputCodigo" class="form-label d-flex justify-content-center"><strong>Código</strong></label>
+                            <label for="inputCodigo"
+                                class="form-label d-flex justify-content-center"><strong>Código</strong></label>
                             <input type="text" class="form-control" id="inputCodigo">
                         </div>
                         <div class="col-3">
-                            <label for="inputNombre" class="form-label d-flex justify-content-center"><strong>Nombre del producto</strong></label>
+                            <label for="inputNombre" class="form-label d-flex justify-content-center"><strong>Nombre del
+                                    producto</strong></label>
                             <input type="text" class="form-control" id="inputNombre">
                         </div>
                         <div class="col">
-                            <label for="inputPrecio" class="form-label d-flex justify-content-center"><strong>Precio</strong></label>
+                            <label for="inputPrecio"
+                                class="form-label d-flex justify-content-center"><strong>Precio</strong></label>
                             <input type="text" class="form-control" id="inputPrecio">
                         </div>
                         <div class="col">
-                            <label for="seleccioneKilos" class="form-label d-flex justify-content-center"><strong>Kilos</strong></label>
+                            <label for="seleccioneKilos"
+                                class="form-label d-flex justify-content-center"><strong>Kilos</strong></label>
                             <select class="form-select" id="seleccioneKilos">
-                                <option disabled selected>Seleccione los kilos</option>                                
+                                <option disabled selected>Seleccione los kilos</option>
                                 <option value="3 Kilos">3 Kilos</option>
                                 <option value="10 Kilos">10 Kilos</option>
                                 <option value="15 Kilos">15 Kilos</option>
                                 <option value="20 Kilos">20 Kilos</option>
+                                <option value="22 Kilos">22 Kilos</option>
                             </select>
                         </div>
                         <div class="col">
-                            <label for="inputCantidad" class="form-label d-flex justify-content-center"><strong>Cantidad</strong></label>
+                            <label for="inputCantidad"
+                                class="form-label d-flex justify-content-center"><strong>Cantidad</strong></label>
                             <input type="text" class="form-control" id="inputCantidad">
                         </div>
                         <div class="col">
-                            <label for="inputPrecioSinIva" class="form-label d-flex justify-content-center" id="inputPrecioSinIva"><strong>Precio sin Iva</strong></label>
+                            <label for="inputPrecioSinIva" class="form-label d-flex justify-content-center"
+                                id="inputPrecioSinIva"><strong>Precio sin Iva</strong></label>
                         </div>
                         <div class="col">
-                            <label for="inputPrecioConIva" class="form-label d-flex justify-content-center" id="inputPrecioConIva"><strong>Precio con Iva</strong></label>
+                            <label for="inputPrecioConIva" class="form-label d-flex justify-content-center"
+                                id="inputPrecioConIva"><strong>Precio con Iva</strong></label>
                         </div>
                     </form>
                 </div>
                 <div class="row m-auto bg-secondary-subtle">
-                    <div id="lineaCreada">
+                    <div id="lineaCreada" id="eliminar">
+
                     </div>
                 </div>
                 <div>
                     <form class="m-4 row">
                         <button type="submit" class="btn btn-outline-dark my-2"
                             id="btnAgregar"><strong>Agregar</strong></button>
-                        <!-- <button type="submit" class="btn btn-outline-dark my-2"
-                            id="btnFinalizar"><strong>Finalizar</strong></button> -->
+                        <button type="submit" class="btn btn-outline-dark my-2"
+                            id="btnBorrar"><strong>Borrar</strong></button>
                     </form>
                 </div>
             </div>
 
+
+        </div>
+        <div class="seleccion d-none toggles m-4 row">
+
+            <button type="submit" class="btn btn-outline-dark btn-light my-2" id="mostrar">Mostrar posibles articulos a
+                cargar</button>
+        </div>
+
+        <div id="card" class=" bg-primary card-group d-none toggles">
         </div>
     </main>
     <footer class="bg-success container">
         <div class="row">
-            <p class="d-flex justify-content-center align-items-center col text-dark"><strong>Todos los derechos reservados.</strong> </p>
+            <p class="d-flex justify-content-center align-items-center col text-dark"><strong>Todos los derechos
+                    reservados.</strong> </p>
         </div>
     </footer>
 

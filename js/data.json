@@ -1,0 +1,83 @@
+[
+    {
+        "codigo": 1,
+        "nombre": "Sieger Criadores All in One",
+        "kilos": "20",
+        "etapa": "Adulto",
+        "tipo": "Perro",
+        "precio": 10000,
+        "imagen": "./assets/images/Sieger-All-In-One-Criadores.png"
+    },
+    {
+        "codigo": 2,
+        "nombre": "Sieger Adult",
+        "kilos": "15",
+        "etapa": "Adulto",
+        "tipo": "Perro",
+        "precio": 8000,
+        "imagen": "./assets/images/Sieger-adult-medium-and-large.png"
+    },
+    {
+        "codigo": 3,
+        "nombre": "Sieger Puppy",
+        "kilos": "15",
+        "etapa": "Cachorro",
+        "tipo": "Perro",
+        "precio": 9000,
+        "imagen": "./assets/images/Sieger-Puppy-Medium-Large.png"
+    },
+    {
+        "codigo": 4,
+        "nombre": "Maxxium Adulto",
+        "kilos": "20",
+        "etapa": "Adulto",
+        "tipo": "Perro",
+        "precio": 8500,
+        "imagen": "./assets/images/Maxxium_Perros_Adultos.png"
+    },
+    {
+        "codigo": 5,
+        "nombre": "Maxxium Cachorro",
+        "kilos": "15",
+        "etapa": "Cachorro",
+        "tipo": "Perro",
+        "precio": 7500,
+        "imagen": "./assets/images/Maxxium_Perros_Cachorros.png"
+    },
+    {
+        "codigo": 6,
+        "nombre": "Proterline Adulto",
+        "kilos": "22",
+        "etapa": "Adulto",
+        "tipo": "Perro",
+        "precio": 5000,
+        "imagen": "./assets/images/Proterline-adultos.png"
+    },
+    {
+        "codigo": 7,
+        "nombre": "Proterline Cachorro",
+        "kilos": "15",
+        "etapa": "Cachorro",
+        "tipo": "Perro",
+        "precio": 5500,
+        "imagen": "./assets/images/Proterline-cachorros.png"
+    },
+    {
+        "codigo": 8,
+        "nombre": "7 Vidas Carne y Pollo",
+        "kilos": "10",
+        "etapa": "Adulto y Cachorro",
+        "tipo": "Gato",
+        "precio": 3000,
+        "imagen": "./assets/images/7vidas-carneypollo.png"
+    },
+    {
+        "codigo": 9,
+        "nombre": "7 Vidas Salmon",
+        "kilos": "10",
+        "etapa": "Adulto y Cachorro",
+        "tipo": "Gato",
+        "precio": 3000,
+        "imagen": "./assets/images/7vidas-salmon.png"
+    }
+]
