@@ -54,6 +54,8 @@ function cargarProducto(catalogo) {
 
 }
 
+
+
 //Función que crea las lineas de productos
 function crearLineaProducto(arrayProducto, html) {
     html.innerHTML = '';
@@ -143,8 +145,9 @@ window.onload = () => {
 //Evento para mostrar la busqueda
 inputBuscar.addEventListener('input', () => {
     criterio = criterioBusqueda.value;
-    if (criterio == 'Criterio de busqueda') {
-        criterioBusqueda.style.border = 'red solid 2px';
+    if (criterio == 'Criterio de busqueda') {       
+        Swal.fire('Debe seleccionar un criterio de busqueda.')
+
         inputBuscar.value = ''
     } else {
         criterioBusqueda.style.border = '';
@@ -185,31 +188,30 @@ btnAgregar.onclick = (evento) => {
         cargarProducto(catalogo);
         guardarStorage(catalogo);
         crearLineaProducto(catalogo, lineaCreada);
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'El articulo ha sido agregado.',
+            showConfirmButton: false,
+            timer: 2000
+        })
 
-    } else {
-        btnAgregar.style.background = 'red';
+    } else {        
+        Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Deben completarse todos los campos.',
+            showConfirmButton: false,
+            timer: 2000
+        })
     }
-    Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: 'El articulo ha sido agregado.',
-        showConfirmButton: false,
-        timer: 2000
-    })
+    
 
 }
 
 //Evento del botón para borrar linea creada de prducto que se encuentra marcada con el checkbox
 btnBorrar.onclick = (evento) => {
     evento.preventDefault();
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
-    checkboxes.forEach((checkbox) => {
-        const codigo = checkbox.parentNode.parentNode.children[1].innerText;
-        catalogo = catalogo.filter(producto => producto.codigo !== codigo);
-        checkbox.parentNode.parentNode.remove();
-    });
-    guardarStorage(catalogo);
-    crearLineaProducto(catalogo, lineaCreada);
     Swal.fire({
         title: '¿Desea borrar el articulo?',
         icon: 'warning',
@@ -218,15 +220,25 @@ btnBorrar.onclick = (evento) => {
         cancelButtonColor: '#d33',
         confirmButtonText: 'Si, borrar!'
     }).then((result) => {
-        if (result.isConfirmed) {
-            Swal.fire(
-                'Borrado!',
-                'El articulo ha sido borrado.',
-                'success'
-            )
-        }
-    })
-};
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+        checkboxes.forEach((checkbox) => {
+            const codigo = checkbox.parentNode.parentNode.children[1].innerText;
+            if (result.isConfirmed) {
+                checkbox.parentNode.parentNode.remove();
+                catalogo = catalogo.filter(producto => producto.codigo !== codigo);
+                guardarStorage(catalogo);
+                crearLineaProducto(catalogo, lineaCreada);
+                Swal.fire(
+                    'Borrado!',
+                    'El articulo ha sido borrado.',
+                    'success'
+                )
+            } else {                
+                checkbox.checked = false;
+            }
+        })
+    });
+}; 
 
 //Función que crea tarjetas de htm en el DOM
 const tarjetasArticulos = (array) => {
